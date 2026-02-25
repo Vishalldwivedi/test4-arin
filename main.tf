@@ -250,7 +250,7 @@ resource "aws_iam_policy" "pipeline_policy" {
       {
         Effect = "Allow"
         Action = "codestar-connections:UseConnection"
-        Resource = "arn:aws:codeconnections:us-east-1:585768146272:connection/866a2381-e631-431e-ba50-fb80aa1d2b39"
+        Resource = "arn:aws:codeconnections:us-east-1:585768146272:connection/f193f874-c852-4221-a688-ccd7e4875046"
       }
     ]
   })

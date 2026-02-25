@@ -21,7 +21,6 @@ phases:
       - ZIP_NAME=lambda-${TIMESTAMP}-${CODEBUILD_BUILD_NUMBER}.zip
 
       - echo Zipping lambda file...
-      - cd lambda-code
       - zip $ZIP_NAME lambda_function.py
 
       - echo Uploading to S3...

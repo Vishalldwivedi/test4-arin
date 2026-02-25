@@ -26,7 +26,15 @@ resource "aws_apigatewayv2_stage" "default" {
 resource "aws_lambda_permission" "api_permission" {
   statement_id  = "AllowAPIGatewayInvoke"
   action        = "lambda:InvokeFunction"
-  function_name = var.lambda_function_name
+  function_name = var.lambda_arn
   principal     = "apigateway.amazonaws.com"
   source_arn    = "${aws_apigatewayv2_api.api.execution_arn}/*/*"
+
+  depends_on = [aws_apigatewayv2_api.api] # wait for API to exist
+}
+
+
+
+output "api_execution_arn" {
+  value = aws_apigatewayv2_api.api.execution_arn
 }

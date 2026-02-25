@@ -5,16 +5,12 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
-    random = {
-      source  = "hashicorp/random"
-      version = "~> 3.0"
-    }
   }
 }
 
 terraform {
   backend "s3" {
-    bucket       = "mybucket-vishaldwivedi-tfstate"
+    bucket       = "my-vishdiiremote-backend-vishaldwivedi"
     key          = "terraform.tfstate"
     region       = "us-east-1"
     use_lockfile = true

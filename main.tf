@@ -2,7 +2,10 @@ module "s3" {
   source               = "./modules/s3"
   lambda_bucket_name   = var.lambda_bucket_name
   artifact_bucket_name = var.artifact_bucket_name
+  remoteBackend = var.remoteBackend
+  
 }
+
 
 module "lambda" {
   source               = "./modules/lambda"
@@ -10,14 +13,14 @@ module "lambda" {
   lambda_role_name     = var.lambda_role_name
   lambda_handler       = var.lambda_handler
   lambda_runtime       = var.lambda_runtime
-  lambda_bucket        = module.s3.lambda_bucket_id # from output 
+  lambda_bucket        = module.s3.lambda_bucket_id
   lambda_s3_key        = var.lambda_s3_key
 }
 
 module "apigateway" {
   source               = "./modules/apigateway"
   api_name             = var.api_name
-  lambda_arn           = module.lambda.lambda_function_arn# from output
+  lambda_arn           = module.lambda.lambda_function_arn
   lambda_function_name = var.lambda_function_name
 }
 

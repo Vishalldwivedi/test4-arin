@@ -106,34 +106,37 @@ resource "aws_iam_policy" "pipeline_policy" {
   name = "${var.pipeline_name}-policy"
 
   policy = jsonencode({
-    Version: "2012-10-17",
-    Statement: [
-      {
-        Effect: "Allow",
-        Action: [
-          "s3:GetObject",
-          "s3:PutObject"
-        ],
-        Resource: [
-          "arn:aws:s3:::${var.artifact_bucket}",
-          "arn:aws:s3:::${var.artifact_bucket}/*"
-        ]
-      },
-      {
-        Effect: "Allow",
-        Action: [
-          "codebuild:StartBuild",
-          "codebuild:BatchGetBuilds"
-        ],
-        Resource: aws_codebuild_project.project.arn
-      },
-      {
-        Effect: "Allow",
-        Action: "codestar-connections:UseConnection",
-        Resource: var.codestar_connection_arn
-      }
-    ]
-  })
+  Version = "2012-10-17"
+  Statement = [
+    {
+      Effect   = "Allow"
+      Action   = [
+        "s3:GetObject",
+        "s3:PutObject"
+      ]
+      Resource = [
+        "arn:aws:s3:::${var.artifact_bucket}",
+        "arn:aws:s3:::${var.artifact_bucket}/*"
+      ]
+    },
+    {
+      Effect   = "Allow"
+      Action   = [
+        "codebuild:StartBuild",
+        "codebuild:BatchGetBuilds"
+      ]
+      Resource = aws_codebuild_project.project.arn
+    },
+    {
+      Effect   = "Allow"
+      Action   = [
+        "codestar-connections:UseConnection",
+        "codestar-connections:PassConnection"
+      ]
+      Resource = var.codestar_connection_arn
+    }
+  ]
+})
 }
 
 resource "aws_iam_role_policy_attachment" "pipeline_attach" {

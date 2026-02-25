@@ -28,7 +28,7 @@ resource "aws_lambda_function" "lambda" {
   handler       = var.lambda_handler
   runtime       = var.lambda_runtime
 
-  s3_bucket = var.lambda_bucket # lambda code is stored 
+  s3_bucket = var.lambda_bucket 
   s3_key    = var.lambda_s3_key #
 
   lifecycle {

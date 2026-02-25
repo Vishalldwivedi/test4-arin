@@ -11,7 +11,7 @@ phases:
       python: 3.11
     commands:
       - echo Installing zip...
-      - yum install -y zip || true
+      - apt install -y zip || true
       - aws --version
 
   build:

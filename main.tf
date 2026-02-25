@@ -87,7 +87,7 @@ resource "aws_lambda_permission" "api_permission" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.lambda.function_name
   principal     = "apigateway.amazonaws.com"
-  
+
   source_arn = "${aws_apigatewayv2_api.api.execution_arn}/*/*"
 }
 
@@ -283,7 +283,8 @@ resource "aws_codepipeline" "pipeline" {
       output_artifacts = ["source_output"]
 
       configuration = {
-        ConnectionArn    = "arn:aws:codeconnections:us-east-1:585768146272:connection/866a2381-e631-431e-ba50-fb80aa1d2b39"
+        ConnectionArn    = "arn:aws:codeconnections:us-east-1:585768146272:connection/f193f874-c852-4221-a688-ccd7e4875046"
+
         FullRepositoryId = "Vishalldwivedi/test4-arin"
         BranchName       = "main"
         DetectChanges    = "true"

@@ -1,1 +1,1 @@
-def lambda_handler(event, context): return {'statusCode': 200, 'body': 'bootstrap it is it is '}
+def lambda_handler(event, context): return {'statusCode': 200, 'body': 'bootstrap from vishal dwivedi '}

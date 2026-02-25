@@ -96,7 +96,7 @@ resource "aws_iam_policy" "codebuild_policy" {
     Version = "2012-10-17"
     Statement = [
 
-      # Upload Lambda zip
+      # ===== Lambda ZIP bucket =====
       {
         Effect = "Allow"
         Action = [
@@ -106,7 +106,20 @@ resource "aws_iam_policy" "codebuild_policy" {
         Resource = "arn:aws:s3:::demo-s3-lambda-vishaldwivedi/*"
       },
 
-      # Lambda management
+      # ===== Artifact bucket (IMPORTANT FIX) =====
+      {
+        Effect = "Allow"
+        Action = [
+          "s3:GetObject",
+          "s3:GetObjectVersion"
+        ]
+        Resource = [
+          "arn:aws:s3:::demo-artifact-bucket-vishaldwivedi",
+          "arn:aws:s3:::demo-artifact-bucket-vishaldwivedi/*"
+        ]
+      },
+
+      # ===== Lambda management =====
       {
         Effect = "Allow"
         Action = [
@@ -117,13 +130,14 @@ resource "aws_iam_policy" "codebuild_policy" {
         Resource = "*"
       },
 
-      # Pass Lambda execution role
+      # ===== Pass Lambda execution role =====
       {
         Effect = "Allow"
         Action = "iam:PassRole"
         Resource = aws_iam_role.lambda_role.arn
       },
 
+      # ===== Logs =====
       {
         Effect = "Allow"
         Action = [

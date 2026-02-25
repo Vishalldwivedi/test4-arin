@@ -267,6 +267,7 @@ resource "aws_codepipeline" "pipeline" {
         ConnectionArn    = "arn:aws:codeconnections:us-east-1:585768146272:connection/866a2381-e631-431e-ba50-fb80aa1d2b39"
         FullRepositoryId = "Vishalldwivedi/test4-arin"
         BranchName       = "main"
+        DetectChanges    = "true"
       }
     }
   }

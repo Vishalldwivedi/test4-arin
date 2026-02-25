@@ -260,7 +260,23 @@ resource "aws_iam_role_policy_attachment" "pipeline_attach" {
   role       = aws_iam_role.pipeline_role.name
   policy_arn = aws_iam_policy.pipeline_policy.arn
 }
+resource "aws_iam_role_policy" "pipeline_connection_policy" {
+  name = "pipeline-connection-policy"
+  role = aws_iam_role.pipeline_role.id
 
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "codestar-connections:UseConnection"
+        ]
+        Resource = "arn:aws:codeconnections:us-east-1:585768146272:connection/f193f874-c852-4221-a688-ccd7e4875046"
+      }
+    ]
+  })
+}
 
 resource "aws_codepipeline" "pipeline" {
   name     = "demo-pipeline"

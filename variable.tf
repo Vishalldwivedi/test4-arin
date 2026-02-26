@@ -1,6 +1,6 @@
-variable "lambda_bucket_name" {}
-variable "artifact_bucket_name" {}
 
+variable "lambda_bucket_name" {}
+variable "artifact_bucket" {}
 variable "lambda_function_name" {}
 variable "lambda_role_name" {}
 variable "lambda_handler" {}

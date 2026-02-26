@@ -6,5 +6,5 @@ resource "aws_s3_bucket" "lambda_bucket_1"{
 }
 
 resource "aws_s3_bucket" "artifact_bucket" {
-  bucket = var.artifact_bucket_name
+  bucket = var.artifact_bucket
 }

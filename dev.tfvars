@@ -1,5 +1,5 @@
 lambda_bucket_name       = "dev-s3-lambda-vishaldwivediiiii"
-artifact_bucket_name     = "dev-artifact-bucket-vishalldwivediiii"
+artifact_bucket     = "dev-artifact-bucket-vishalldwivediiii"
 
 lambda_function_name     = "dev-lambda"
 lambda_role_name         = "dev-lambda-role"

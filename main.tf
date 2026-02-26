@@ -1,7 +1,7 @@
 module "s3" {
   source               = "./modules/s3"
   lambda_bucket_name   = var.lambda_bucket_name
-  artifact_bucket_name = var.artifact_bucket_name
+  artifact_bucket = var.artifact_bucket
   remoteBackend = var.remoteBackend
   
 }
@@ -26,10 +26,10 @@ module "apigateway" {
 
 module "codepipeline" {
   source                  = "./modules/codepipeline"
-  artifact_bucket         = module.s3.artifact_bucket_id # from output
+  artifact_bucket         = module.s3.artifact_bucket_id
+  lambda_bucket_name      = var.lambda_bucket_name
   codestar_connection_arn = var.codestar_connection_arn
   repo_name               = var.repo_name
-  lambda_bucket_name=var.lambda_bucket_name
   branch                  = var.branch
   codebuild_project_name  = var.codebuild_project_name
   pipeline_name           = var.pipeline_name

@@ -3,7 +3,7 @@ variable "lambda_bucket_name" {
   description = "S3 bucket for Lambda code"
 }
 
-variable "artifact_bucket_name" {
+variable "artifact_bucket" {
   type        = string
   description = "S3 bucket for CodePipeline artifacts"
 }

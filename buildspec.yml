@@ -2,8 +2,8 @@ version: 0.2
 
 env:
   variables:
-    S3_BUCKET: dev-s3-lambda-vishaldwivediiiii
-    LAMBDA_NAME: dev-lambda
+    S3_BUCKET: demo-s3-lambda-vishaldwivedi
+    LAMBDA_NAME: demo-lambda
 
 phases:
   install:
@@ -11,7 +11,7 @@ phases:
       python: 3.11
     commands:
       - echo Installing zip...
-      - apt install -y zip || true
+      - yum install -y zip || true
       - aws --version
 
   build:
@@ -28,5 +28,3 @@ phases:
 
       - echo Updating Lambda from S3...
       - aws lambda update-function-code --function-name $LAMBDA_NAME --s3-bucket $S3_BUCKET --s3-key $ZIP_NAME
-
-      - echo Deployment completed successfully 🚀

@@ -29,6 +29,7 @@ module "codepipeline" {
   artifact_bucket         = module.s3.artifact_bucket_id # from output
   codestar_connection_arn = var.codestar_connection_arn
   repo_name               = var.repo_name
+  lambda_bucket_name=var.lambda_bucket_name
   branch                  = var.branch
   codebuild_project_name  = var.codebuild_project_name
   pipeline_name           = var.pipeline_name

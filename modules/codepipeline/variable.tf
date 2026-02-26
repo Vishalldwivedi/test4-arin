@@ -27,3 +27,5 @@ variable "pipeline_name" {
   type        = string
   description = "CodePipeline name"
 }
+variable "lambda_bucket_name" {
+}

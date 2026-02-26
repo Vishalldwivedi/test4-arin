@@ -116,10 +116,19 @@ resource "aws_iam_policy" "pipeline_policy" {
           "s3:ListBucket"  
       ]
       Resource = [
-        "arn:aws:s3:::${var.artifact_bucket}",
-        "arn:aws:s3:::${var.artifact_bucket}/*"
+        "arn:aws:s3:::${var.lambda_bucket_name}",
+        "arn:aws:s3:::${var.lambda_bucket_name}/*"
       ]
     },
+    {
+        Effect: "Allow",
+        Action: [
+          "lambda:GetFunction",
+          "lambda:CreateFunction",
+          "lambda:UpdateFunctionCode"
+        ],
+        Resource: "*"
+      },
     {
       Effect   = "Allow"
       Action   = [

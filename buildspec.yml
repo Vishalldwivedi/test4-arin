@@ -2,8 +2,8 @@ version: 0.2
 
 env:
   variables:
-    S3_BUCKET: demo-s3-lambda-vishaldwivedi
-    LAMBDA_NAME: demo-lambda
+    S3_BUCKET: dev-s3-lambda-vishaldwivediiiii
+    LAMBDA_NAME: dev-lambda
 
 phases:
   install:

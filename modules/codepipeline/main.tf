@@ -14,55 +14,68 @@ resource "aws_iam_role" "codebuild_role" {
     }]
   })
 }
-
 resource "aws_iam_policy" "codebuild_policy" {
   name = "${var.codebuild_project_name}-policy"
+
   policy = jsonencode({
     Version = "2012-10-17",
-    Statement: [
+    Statement = [
+
+      #  Access to Artifact Bucket (Pipeline)
       {
-        Effect: "Allow",
-        Action: [
+        Effect = "Allow",
+        Action = [
           "s3:GetObject",
-          "s3:PutObject"
+          "s3:PutObject",
+          "s3:ListBucket"
         ],
-        Resource: [
+        Resource = [
           "arn:aws:s3:::${var.artifact_bucket}",
           "arn:aws:s3:::${var.artifact_bucket}/*"
         ]
       },
+
+      #  Access to Lambda Deployment Bucket (THIS WAS MISSING)
       {
-        Effect: "Allow",
-        Action: [
+        Effect = "Allow",
+        Action = [
+          "s3:GetObject",
+          "s3:PutObject",
+          "s3:ListBucket"
+        ],
+        Resource = [
+          "arn:aws:s3:::${var.lambda_bucket_name}",
+          "arn:aws:s3:::${var.lambda_bucket_name}/*"
+        ]
+      },
+
+      #  Lambda permissions
+      {
+        Effect = "Allow",
+        Action = [
           "lambda:GetFunction",
-          "lambda:CreateFunction",
           "lambda:UpdateFunctionCode"
         ],
-        Resource: "*"
+        Resource = "*"
       },
+
+      #  Logs
       {
-        Effect: "Allow",
-        Action: "iam:PassRole",
-        Resource: "*"
-      },
-      {
-        Effect: "Allow",
-        Action: [
+        Effect = "Allow",
+        Action = [
           "logs:CreateLogGroup",
           "logs:CreateLogStream",
           "logs:PutLogEvents"
         ],
-        Resource: "*"
+        Resource = "*"
       }
     ]
   })
 }
-
 resource "aws_iam_role_policy_attachment" "codebuild_attach" {
   role       = aws_iam_role.codebuild_role.name
   policy_arn = aws_iam_policy.codebuild_policy.arn
 }
-
 ##########################
 # CodeBuild Project
 ##########################

@@ -109,10 +109,11 @@ resource "aws_iam_policy" "pipeline_policy" {
   Version = "2012-10-17"
   Statement = [
     {
-      Effect   = "Allow"
-      Action   = [
-        "s3:GetObject",
-        "s3:PutObject"
+       Effect = "Allow",
+        Action = [
+          "s3:GetObject",
+          "s3:PutObject",
+          "s3:ListBucket"  
       ]
       Resource = [
         "arn:aws:s3:::${var.artifact_bucket}",
